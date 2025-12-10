@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    @for(exercise of exercises(); track exercise.id){
+    <div class="col col-lg-4">
+      <ion-card class="ex-card" color="primary">
+        <img
+          alt="icon loading..."
+          [src]="this.exImageBasePath + exercise.iconPath"
+        />
+        <ion-card-header class="ex-card-header-container">
+          <ion-card-title>{{ exercise.title }}</ion-card-title>
+          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content> Card Content </ion-card-content>
+        <ion-button id="open-modal" color="light" expand="block">Open Sheet Modal</ion-button>
+      </ion-card>
+    </div>
+    }
+  </div>
+</div>

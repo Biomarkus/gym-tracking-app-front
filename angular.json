@@ -35,8 +35,8 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"],
-            "scripts": [],
+            "styles": ["src/global.scss", "src/theme/variables.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
             "browser": "src/main.ts"
           },
           "configurations": {
@@ -109,8 +109,8 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"],
-            "scripts": []
+            "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css", "src/global.scss", "src/theme/variables.scss"],
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "ci": {
@@ -129,20 +129,27 @@
     }
   },
   "cli": {
-    "schematicCollections": ["@ionic/angular-toolkit"]
+    "schematicCollections": [
+      "@ionic/angular-toolkit"
+    ],
+    "analytics": false
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {
-      "styleext": "scss"
+      "styleext": "scss",
+      "skipTests": true
     },
     "@ionic/angular-toolkit:page": {
-      "styleext": "scss"
+      "styleext": "scss",
+      "skipTests": true
     },
     "@angular-eslint/schematics:application": {
-      "setParserOptionsProject": true
+      "setParserOptionsProject": true,
+      "skipTests": true
     },
     "@angular-eslint/schematics:library": {
-      "setParserOptionsProject": true
+      "setParserOptionsProject": true,
+      "skipTests": true
     }
   }
 }
