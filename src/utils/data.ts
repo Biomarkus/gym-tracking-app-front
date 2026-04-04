@@ -36,3 +36,12 @@ export const exercisesData = [
     { id: 24, title: 'Leg Raises', iconPath: '/', category: 'abs' },
     { id: 25, title: 'Cable Crunch', iconPath: '/', category: 'abs' },
   ]
+
+
+export const sessionsData = [
+  { id: 1, title: 'Best Session', date: "2026-04-02T11:20:30.000Z"},
+  { id: 2, title: 'Best Second Session', date: "2026-05-02T11:20:30.000Z"},
+  { id: 3, title: 'Best 3d Session', date: "2026-06-02T11:20:30.000Z"},
+  { id: 4, title: 'Best 4th Session', date: "2026-07-02T11:20:30.000Z"},
+  { id: 5, title: 'Best 5th Session', date: "2026-08-02T11:20:30.000Z"},
+]

@@ -5,16 +5,17 @@ import {
   IonTitle,
   IonContent,
 } from '@ionic/angular/standalone';
-import { ExercisesComponent } from 'src/components/exercises/exercises.component';
-import { exercisesData } from 'src/utils/data';
-import { Exercise } from 'types/exercise';
+import { sessionsData} from 'src/utils/data';
+import {Session} from "types/session";
+import {SessionsComponent} from "src/components/sessions/sessions.component";
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExercisesComponent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, SessionsComponent],
 })
 export class HomePage {
-  exercises = signal<Exercise[]>(exercisesData);
+  sessions = signal<Session[]>(sessionsData);
+
 }
