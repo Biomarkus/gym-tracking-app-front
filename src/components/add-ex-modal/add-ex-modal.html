@@ -1,0 +1,39 @@
+<ion-modal class="add-modal" (didDismiss)="closeExercise.emit()" [isOpen]="isOpen()">
+  <ng-template>
+    <h3>{{ exercise()?.title }}</h3>
+    <ng-content>
+      <div class="set-container">
+        <ion-picker>
+          <ion-picker-column [value]="1">
+            <div slot="suffix">KG's</div>
+            @for (number of kgsToChoose; track number){
+              <ion-picker-column-option [value]="number">{{number}}</ion-picker-column-option>
+            }
+          </ion-picker-column>
+        </ion-picker>
+        <ion-picker>
+          <div slot="suffix">Count:</div>
+          <ion-picker-column [value]="1">
+            <div slot="prefix">Count:</div>
+            @for (number of countToChoose; track number){
+              <ion-picker-column-option [value]="number">{{number}}</ion-picker-column-option>
+            }
+          </ion-picker-column>
+        </ion-picker>
+
+        <ion-button class="add-ex-set-btn-container" color="warning" size="small">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </div>
+      <h3>Sets:</h3>
+      <div class="exs-list-container">
+          <div class="exercise-card">
+            <span>title</span>
+            <ion-button  size="small" color="danger">✕</ion-button>
+          </div>
+      </div>
+
+    </ng-content>
+    <ion-button class="add-ex-set-btn-container" color="warning" size="small" (click)="onAddExercise()">add exercise</ion-button>
+  </ng-template>
+</ion-modal>

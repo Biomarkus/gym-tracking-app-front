@@ -1,4 +1,4 @@
-import { Component, input, model, OnInit } from '@angular/core';
+import {Component, input, output} from '@angular/core';
 import { Exercise } from 'types/exercise';
 import {
   IonCard,
@@ -24,5 +24,12 @@ import {
 })
 export class ExercisesComponent {
   exercises = input.required<Exercise[]>();
+  isExerciseModalOpen = input.required<boolean>();
   exImageBasePath = 'assets/exercise_images/';
+  openExercise = output<Exercise>();
+
+
+  onOpenExercise(exercise: Exercise) {
+    this.openExercise.emit(exercise);
+  }
 }

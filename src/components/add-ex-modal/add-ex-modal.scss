@@ -1,0 +1,37 @@
+.add-ex-set-btn-container{
+  padding: 0 5rem;
+}
+
+
+.set-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* important */
+  height: 10rem;
+  width: 100%;
+}
+
+.add-modal::part(content) {
+  border-radius: 10px;
+  padding: 1rem;
+  overflow: hidden; /* important so corners are clean */
+}
+
+
+.exs-list-container{
+  height: 10rem;
+  background: #1f1f1f;
+  border-radius: 10px;
+}
+
+.exercise-card {
+  background: white;
+  border-radius: 10px;
+  padding: 8px;
+  color: black;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
