@@ -1,7 +1,7 @@
 import {Component, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {IonButton, IonContent, IonHeader, IonTitle, IonToolbar} from '@ionic/angular/standalone';
+import {IonButton, IonContent, IonHeader, IonIcon, IonTitle, IonToolbar} from '@ionic/angular/standalone';
 import {ExerciseModalComponent} from "src/components/add-ex-modal/add-ex-modal";
 import {ExercisesComponent} from "src/components/exercises/exercises.component";
 import {Exercise} from "types/exercise";

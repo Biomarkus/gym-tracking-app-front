@@ -1,13 +1,13 @@
-import { Component, signal } from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
 } from '@ionic/angular/standalone';
-import { sessionsData} from 'src/utils/data';
 import {Session} from "types/session";
 import {SessionsComponent} from "src/components/sessions/sessions.component";
+import {SessionsService} from "src/services/sessions.service";
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,17 @@ import {SessionsComponent} from "src/components/sessions/sessions.component";
   styleUrls: ['home.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, SessionsComponent],
 })
-export class HomePage {
-  sessions = signal<Session[]>(sessionsData);
+export class HomePage implements OnInit {
+  sessions = signal<Session[]>([]);
+  private sessionsService: SessionsService = inject(SessionsService);
+
+  ngOnInit() {
+    this.sessionsService.getSessions({}).subscribe(
+      {next: (sessions) => this.sessions.set(sessions),
+        error: (err) =>  console.log(err)
+      }
+
+    )
+  }
 
 }

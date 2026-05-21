@@ -1,18 +1,21 @@
 <div class="container">
   <div class="row justify-content-md-center">
-    @for(session of sessions(); track session.id){
-      <div class="col col-lg-4">
-        <ion-card class="ex-card" color="tertiary">
-          <ion-card-header class="ex-card-header-container">
-            <ion-card-title>{{ session.title }}</ion-card-title>
-            <ion-card-subtitle>{{ formatDate(session.date) }}</ion-card-subtitle>
-          </ion-card-header>
+    @if(sessions().length > 0){
+      @for(session of sessions(); track session.sessionId){
+        <div class="col col-lg-4">
+          <ion-card class="ex-card" color="tertiary">
+            <ion-card-header class="ex-card-header-container">
+              <ion-card-title>{{ session.title }}</ion-card-title>
+              <ion-card-subtitle>{{ formatDate(session.startDate) }}</ion-card-subtitle>
+            </ion-card-header>
 
-          <ion-card-content> Card Content </ion-card-content>
-          <ion-button id="open-modal" color="light" expand="block">Edit Session</ion-button>
-        </ion-card>
-      </div>
+            <ion-card-content> Card Content </ion-card-content>
+            <ion-button id="open-modal" color="light" expand="block">Edit Session</ion-button>
+          </ion-card>
+        </div>
+      }
     }
+
     <div class="col col-lg-4 col-">
       <ion-card id="add-session-card" class="ex-card" color="warning">
         <ion-card-header class="ex-card-header-container">

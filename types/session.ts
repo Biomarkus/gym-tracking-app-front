@@ -7,3 +7,9 @@ export interface Session {
   endDate: string
   sessionExercises: SessionExercise[]
 }
+
+
+export interface SessionFilter {
+  title?: string;
+  startDate?: string;
+}

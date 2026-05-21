@@ -24,6 +24,10 @@
       </div>
     </div>
   </div>
+  <ion-button color="danger" class="close-sessions-button" shape="round">
+    Close Session
+  </ion-button>
+
 
   <app-add-ex-modal
     [isOpen]="isExerciseModalOpen()"
@@ -31,4 +35,6 @@
     (closeExercise)="onCloseExercise()"
     [exercise]="selectedExercise()"
   ></app-add-ex-modal>
+
+
 </ion-content>
