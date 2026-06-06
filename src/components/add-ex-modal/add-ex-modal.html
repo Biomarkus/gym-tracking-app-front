@@ -4,7 +4,7 @@
     <ng-content>
       <div class="set-container">
         <ion-picker>
-          <ion-picker-column [value]="1">
+          <ion-picker-column (ionChange)="onWeightChange($event)" [value]="selectedWeight()">
             <div slot="suffix">KG's</div>
             @for (number of kgsToChoose; track number){
               <ion-picker-column-option [value]="number">{{number}}</ion-picker-column-option>
@@ -13,7 +13,7 @@
         </ion-picker>
         <ion-picker>
           <div slot="suffix">Count:</div>
-          <ion-picker-column [value]="1">
+          <ion-picker-column (ionChange)="onCountChange($event)" [value]="selectedCount()">
             <div slot="prefix">Count:</div>
             @for (number of countToChoose; track number){
               <ion-picker-column-option [value]="number">{{number}}</ion-picker-column-option>
@@ -21,16 +21,19 @@
           </ion-picker-column>
         </ion-picker>
 
-        <ion-button class="add-ex-set-btn-container" color="warning" size="small">
+        <ion-button (click)="onAddSessionExercise()" class="add-ex-set-btn-container" color="warning" size="small">
           <ion-icon name="add"></ion-icon>
         </ion-button>
       </div>
       <h3>Sets:</h3>
       <div class="exs-list-container">
+        @for(sessionExercise of selectedNewSessionExercises(); track $index){
           <div class="exercise-card">
-            <span>title</span>
+            <span>{{`${$index+1}) ${sessionExercise.weight} kgs for ${sessionExercise.reps} times`}}</span>
             <ion-button  size="small" color="danger">✕</ion-button>
           </div>
+        }
+
       </div>
 
     </ng-content>

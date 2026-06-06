@@ -15,4 +15,8 @@ export class SessionsService {
   public getSessions(filters: SessionFilter): Observable<Session[]> {
     return this.http.post<Session[]>(environment.apiUrl + '/api/v1/session/filter', filters)
   }
+
+  public createSession(title: string): Observable<Session> {
+    return this.http.post<Session>(environment.apiUrl + '/api/v1/sessions', {title})
+  }
 }

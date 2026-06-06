@@ -4,3 +4,10 @@ export interface SessionExercise {
   reps: number;
   weight: number;
 }
+
+export interface MinimalSessionExercise {
+  exerciseId: number;
+  reps: number;
+  weight: number;
+}
+

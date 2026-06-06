@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>New Session</ion-title>
+    <ion-title>{{sessionTitle()}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -31,7 +31,7 @@
 
   <app-add-ex-modal
     [isOpen]="isExerciseModalOpen()"
-    (addExercise)="onAddExercise()"
+    (addExercise)="onAddExercise($event)"
     (closeExercise)="onCloseExercise()"
     [exercise]="selectedExercise()"
   ></app-add-ex-modal>
