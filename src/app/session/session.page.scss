@@ -1,0 +1,43 @@
+.page-layout {
+  display: flex;
+  height: 100%;
+}
+
+/* LEFT SIDE */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* RIGHT SIDEBAR */
+.sidebar {
+  width: 20rem;
+  border-left: 0.3rem solid #ddd;
+  padding: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  overflow-y: auto; /* 👈 scroll vertically */
+}
+
+/* CARDS */
+.exercise-card {
+  background: white;
+  border-radius: 10px;
+  padding: 8px;
+  color: black;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.close-sessions-button{
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -15,7 +15,7 @@ import {
 } from "@ionic/angular/standalone";
 import {Session} from "types/session";
 import {Router} from "@angular/router";
-
+import {SessionsService} from "../../services/sessions.service";
 @Component({
   selector: 'app-sessions',
   standalone: true,
@@ -36,13 +36,28 @@ import {Router} from "@angular/router";
 export class SessionsComponent {
   sessions = input.required<Session[]>();
   private router = inject(Router);
-
+  private sessionsService: SessionsService = inject(SessionsService);
 
   formatDate(dateStr: string) {
     return new Date(dateStr).toDateString();
   }
 
-  navigateToNewSession() {
-    this.router.navigate(['/sessions/new']);
+  handleNewSession() {
+    const now = new Date();
+    const time = now.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    });
+    const defaultSessionName = `Workout - ${now.toLocaleDateString()} ${time}`;
+    this.sessionsService.createSession(defaultSessionName).subscribe({next: (session) =>
+        this.router.navigate(['/sessions', session.sessionId]),
+      error: (err) =>  console.log(err)
+    })
+
+  }
+
+  editSession(sessionId: number) {
+    this.router.navigate(['/sessions', sessionId])
   }
 }

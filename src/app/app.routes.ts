@@ -11,14 +11,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'sessions/:sessionId/edit',
-    loadComponent: () =>
-      import('./session/session.page').then(
-        m => m.SessionPage
-      ),
-  },
-  {
-    path: 'sessions/new',
-    loadComponent: () => import('./new-session/new-session.page').then( m => m.NewSessionPage)
+    path: 'sessions/:sessionId',
+    loadComponent: () => import('./session/session.page').then(m => m.SessionPage)
   },
 ];

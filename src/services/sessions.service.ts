@@ -15,7 +15,9 @@ export class SessionsService {
   public getSessions(filters: SessionFilter): Observable<Session[]> {
     return this.http.post<Session[]>(environment.apiUrl + '/api/v1/session/filter', filters)
   }
-
+  public getSessionById(sessionId: number): Observable<Session> {
+    return this.http.get<Session>(environment.apiUrl + `/api/v1/session/${sessionId}`)
+  }
   public createSession(title: string): Observable<Session> {
     return this.http.post<Session>(environment.apiUrl + '/api/v1/sessions', {title})
   }

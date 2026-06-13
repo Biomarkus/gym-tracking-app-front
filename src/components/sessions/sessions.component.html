@@ -10,7 +10,8 @@
             </ion-card-header>
 
             <ion-card-content> Card Content </ion-card-content>
-            <ion-button id="open-modal" color="light" expand="block">Edit Session</ion-button>
+            <ion-button id="open-modal" color="light" expand="block" (click)="editSession(session.sessionId)">
+              Edit Session</ion-button>
           </ion-card>
         </div>
       }
@@ -22,7 +23,7 @@
           <ion-card-title>New Session</ion-card-title>
         </ion-card-header>
         <ion-fab >
-          <ion-fab-button id="add-session-btn" (click)="navigateToNewSession()" color="light">
+          <ion-fab-button id="add-session-btn" (click)="handleNewSession()" color="light">
             <ion-icon name="add"></ion-icon>
           </ion-fab-button>
         </ion-fab>
