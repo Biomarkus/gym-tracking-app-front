@@ -59,15 +59,17 @@ export class SessionPage implements OnInit {
   onAddExercises(minimalSessionExercises: MinimalSessionExercise[]) {
     const currentSessionId = this.currentSession()?.sessionId;
     if(currentSessionId) {
-      const exercisesToAdd: SessionExercise[] = minimalSessionExercises.map(sessionExercise => ({
-        ...sessionExercise,
-        sessionId: currentSessionId
-      }));
-      this.sessionExercisesService.createSessionExercises(exercisesToAdd).subscribe({next: (sessionExercises) =>
+      this.sessionExercisesService.createSessionExercises(currentSessionId, minimalSessionExercises).subscribe({next: (sessionExercises) =>
           this.sessionExercises.update(exercises => [...exercises, ...sessionExercises]),
         error: (err) =>  console.log(err)
         })
     }
+  }
+
+  onSessionExerciseDelete(sessionExerciseId: number){
+    this.sessionExercisesService.deleteSessionExercise(sessionExerciseId).subscribe({next: () =>
+      this.sessionExercises.update(exercises => exercises.filter((exercise) => exercise.id !== sessionExerciseId)),
+      error: (err) =>  console.log(err)})
   }
 
   private getSession(sessionId: number) {

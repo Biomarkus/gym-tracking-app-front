@@ -21,7 +21,7 @@
       @for(sessionExercise of sessionExercises(); track $index){
         <div class="exercise-card">
           <span>{{`Ex: ${sessionExercise.exercise?.title}: ${sessionExercise.weight} kgs | ${sessionExercise.reps} times`}}</span>
-          <ion-button  size="small" color="danger">✕</ion-button>
+          <ion-button  size="small" color="danger" (click)="onSessionExerciseDelete(sessionExercise.id)">✕</ion-button>
         </div>
       }
     </div>

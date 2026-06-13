@@ -1,6 +1,7 @@
 import {Exercise} from "./exercise";
 
 export interface SessionExercise {
+  id: number;
   sessionId: number;
   exerciseId: number;
   exercise?: Exercise;
