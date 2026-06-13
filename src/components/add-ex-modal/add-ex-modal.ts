@@ -1,7 +1,7 @@
 import {Component, computed, input, output, signal} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {Exercise} from "../../../types/exercise";
-import {MinimalSessionExercise, SessionExercise} from "../../../types/session-exercise";
+import {MinimalSessionExercise} from "../../../types/session-exercise";
 
 @Component({
   selector: 'app-add-ex-modal',

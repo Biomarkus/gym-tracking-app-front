@@ -7,11 +7,11 @@ import {ExercisesComponent} from "src/components/exercises/exercises.component";
 import {Exercise} from "types/exercise";
 import {exercisesData} from "src/utils/data";
 import {MinimalSessionExercise, SessionExercise} from "../../../types/session-exercise";
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Session} from "../../../types/session";
 import {SessionsService} from "../../services/sessions.service";
 import {SessionExercisesService} from "../../services/session-exercises.service";
-
+import {formatDate} from "../../helpers/date-helper";
 @Component({
   selector: 'app-session',
   templateUrl: './session.page.html',
@@ -30,6 +30,7 @@ export class SessionPage implements OnInit {
   private route = inject(ActivatedRoute);
   private sessionsService: SessionsService = inject(SessionsService);
   private sessionExercisesService: SessionExercisesService = inject(SessionExercisesService);
+  private router = inject(Router);
 
 
 
@@ -77,5 +78,20 @@ export class SessionPage implements OnInit {
         this.currentSession.set(session),
       error: (err) =>  console.log(err)
     })
+  }
+
+  onSessionClose(){
+    this.router.navigate(['/sessions']);
+    const sessionId = this.currentSession()?.sessionId;
+    if(sessionId && !this.currentSession()?.endDate){
+      this.sessionsService.updateSessionEndDate(sessionId, new Date().toISOString())
+        .subscribe({error: (err) =>  console.log(err)})
+    }
+
+  }
+
+  getEndDateFormatted(): string{
+    const endDate= this.currentSession()?.endDate;
+    return endDate ? formatDate(endDate) : 'still in progress'
   }
 }

@@ -1,6 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>{{sessionTitle()}}</ion-title>
+    <ion-title>{{getEndDateFormatted()}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -26,7 +27,7 @@
       }
     </div>
   </div>
-  <ion-button color="danger" class="close-sessions-button" shape="round">
+  <ion-button color="danger" class="close-sessions-button" (click)="onSessionClose()" shape="round">
     Close Session
   </ion-button>
 
@@ -37,5 +38,4 @@
     (closeExercise)="onCloseExercise()"
     [exercise]="selectedExercise()"
   />
-
 </ion-content>

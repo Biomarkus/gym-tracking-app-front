@@ -16,6 +16,7 @@ import {
 import {Session} from "types/session";
 import {Router} from "@angular/router";
 import {SessionsService} from "../../services/sessions.service";
+import {formatDate} from "../../helpers/date-helper";
 @Component({
   selector: 'app-sessions',
   standalone: true,
@@ -37,10 +38,10 @@ export class SessionsComponent {
   sessions = input.required<Session[]>();
   private router = inject(Router);
   private sessionsService: SessionsService = inject(SessionsService);
+  protected readonly formatDate = formatDate;
 
-  formatDate(dateStr: string) {
-    return new Date(dateStr).toDateString();
-  }
+
+
 
   handleNewSession() {
     const now = new Date();

@@ -21,4 +21,7 @@ export class SessionsService {
   public createSession(title: string): Observable<Session> {
     return this.http.post<Session>(environment.apiUrl + '/api/v1/sessions', {title})
   }
+  public updateSessionEndDate(session_id: number, endDate: string){
+    return this.http.put<Session>(environment.apiUrl + `/api/v1/session/${session_id}`, {endDate})
+  }
 }
