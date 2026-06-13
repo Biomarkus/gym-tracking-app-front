@@ -6,10 +6,11 @@ import {ExerciseModalComponent} from "src/components/add-ex-modal/add-ex-modal";
 import {ExercisesComponent} from "src/components/exercises/exercises.component";
 import {Exercise} from "types/exercise";
 import {exercisesData} from "src/utils/data";
-import {SessionExercise} from "../../../types/session-exercise";
+import {MinimalSessionExercise, SessionExercise} from "../../../types/session-exercise";
 import { ActivatedRoute } from '@angular/router';
 import {Session} from "../../../types/session";
 import {SessionsService} from "../../services/sessions.service";
+import {SessionExercisesService} from "../../services/session-exercises.service";
 
 @Component({
   selector: 'app-session',
@@ -28,12 +29,22 @@ export class SessionPage implements OnInit {
 
   private route = inject(ActivatedRoute);
   private sessionsService: SessionsService = inject(SessionsService);
+  private sessionExercisesService: SessionExercisesService = inject(SessionExercisesService);
 
 
 
   ngOnInit() {
-    const sessionId = this.route.snapshot.paramMap.get('sessionId');
-    sessionId && this.getSession(Number(sessionId));
+    let sessionIdParam = this.route.snapshot.paramMap.get('sessionId');
+    if(sessionIdParam){
+      const sessionId= Number(sessionIdParam);
+      this.getSession(sessionId);
+      this.sessionExercisesService.getSessionsExercises(sessionId).subscribe({next: (sessionExercises) =>
+          this.sessionExercises.set(sessionExercises),
+        error: (err) =>  console.log(err)
+      })
+    }
+
+
   }
 
   openExercise(exercise: Exercise) {
@@ -45,9 +56,18 @@ export class SessionPage implements OnInit {
     this.isExerciseModalOpen.set(false);
     this.selectedExercise.set(undefined);
   }
-  onAddExercise(event: any) {
-    this.sessionExercises.update(exercises => [...exercises, ...event.detail.value])
-    this.onCloseExercise()
+  onAddExercises(minimalSessionExercises: MinimalSessionExercise[]) {
+    const currentSessionId = this.currentSession()?.sessionId;
+    if(currentSessionId) {
+      const exercisesToAdd: SessionExercise[] = minimalSessionExercises.map(sessionExercise => ({
+        ...sessionExercise,
+        sessionId: currentSessionId
+      }));
+      this.sessionExercisesService.createSessionExercises(exercisesToAdd).subscribe({next: (sessionExercises) =>
+          this.sessionExercises.update(exercises => [...exercises, ...sessionExercises]),
+        error: (err) =>  console.log(err)
+        })
+    }
   }
 
   private getSession(sessionId: number) {

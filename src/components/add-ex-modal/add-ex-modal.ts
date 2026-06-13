@@ -25,7 +25,11 @@ export class ExerciseModalComponent{
   public countToChoose = [...Array(50).keys()].map(x => x + 1);
 
   onAddExercise() {
-    this.addExercise.emit(this.newSessionExercises());
+    if(this.newSessionExercises().length > 0) {
+      this.addExercise.emit(this.newSessionExercises());
+      this.newSessionExercises.set([]);
+    }
+    this.closeExercise.emit();
   }
 
   onAddSessionExercise() {

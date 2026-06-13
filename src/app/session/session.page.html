@@ -18,10 +18,12 @@
 
     <!-- RIGHT: scrollable sidebar -->
     <div class="sidebar">
-      <div class="exercise-card">
-        <span>title</span>
-        <ion-button  size="small" color="danger">✕</ion-button>
-      </div>
+      @for(sessionExercise of sessionExercises(); track $index){
+        <div class="exercise-card">
+          <span>{{`Ex: ${sessionExercise.exercise?.title}: ${sessionExercise.weight} kgs | ${sessionExercise.reps} times`}}</span>
+          <ion-button  size="small" color="danger">✕</ion-button>
+        </div>
+      }
     </div>
   </div>
   <ion-button color="danger" class="close-sessions-button" shape="round">
@@ -31,10 +33,9 @@
 
   <app-add-ex-modal
     [isOpen]="isExerciseModalOpen()"
-    (addExercise)="onAddExercise($event)"
+    (addExercise)="onAddExercises($event)"
     (closeExercise)="onCloseExercise()"
     [exercise]="selectedExercise()"
-  ></app-add-ex-modal>
-
+  />
 
 </ion-content>

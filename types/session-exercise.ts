@@ -1,6 +1,9 @@
+import {Exercise} from "./exercise";
+
 export interface SessionExercise {
   sessionId: number;
   exerciseId: number;
+  exercise?: Exercise;
   reps: number;
   weight: number;
 }
