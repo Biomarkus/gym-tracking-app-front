@@ -44,4 +44,9 @@ export class ExerciseModalComponent{
   onCountChange(event: any) {
     this.selectedCount.set(event.detail.value);
   }
+
+  onDeleteExercise(exerciseIndex: number) {
+    this.newSessionExercises.update((exercises) =>
+      exercises.filter((_, index) => index !== exerciseIndex));
+  }
 }
