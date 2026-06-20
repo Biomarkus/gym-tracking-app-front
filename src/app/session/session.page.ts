@@ -92,6 +92,6 @@ export class SessionPage implements OnInit {
 
   getEndDateFormatted(): string{
     const endDate= this.currentSession()?.endDate;
-    return endDate ? formatDate(endDate) : 'still in progress'
+    return endDate ? `Ended: ${formatDate(endDate)}` : 'still in progress'
   }
 }
